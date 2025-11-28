@@ -30,8 +30,13 @@ OBJ = $(SRC:.c=.o)
 
 all: simcl
 
+# Compile object files with include path
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+# Link executable
 simcl: $(OBJ)
-	$(CC) $(CFLAGS) -o simcl $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJ)
 
 clean:
 	rm -f $(OBJ) simcl
